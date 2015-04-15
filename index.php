@@ -117,6 +117,7 @@ $("input[name='s[]']").each(function(n,e){
 
 			});
 			putstr = qian + zhong + hou;
+			console.log(putstr);
 			$('#ssss').append(putstr);
 		}
 		else
@@ -166,7 +167,7 @@ $("input[name='s[]']").each(function(n,e){
 			});
 			zhong = '<tr><td rowspan="' + num + '">' + sv + '</td>' + zhong;
 			putstr = qian + zhong + hou;
-			//console.log(putstr);
+			console.log(putstr);
 			$('#sss').append(putstr);
 		}
 		else
