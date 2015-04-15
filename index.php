@@ -20,21 +20,57 @@ $('#getSkuProps').click(function(){changeSKU()});
 
 
 function changeSKU(){
+
+	  //var nowstr = '80:100::5569827:55481260;1627207:3232483;80:100::5569827:55481260;1627207:28340;80:100::5569827:55481260;1627207:107121;80:100::5569827:55481261;1627207:3232483;80:100::5569827:55481261;1627207:28340;80:100::5569827:55481261;1627207:107121;';
+	  //var myarr = new Array("80:89", "9:100", "80:36", "80:100", "12:100", "80:123");
+	  var nowstr = $('#skuProps').text();
+	  var arr = new Array();
+	  $('#sss table').each(function(index, element) {
+		  $(this).find('input').each(function(index, element) {
+			  arr.push($(this).val());
+		  });
+	  });
+	  var myarr = new Array();
+	  for (var i = 0; i < arr.length; i += 2) {
+		  myarr.push(arr[i] + ':' + arr[i + 1] + '');
+	  }
+	  var data = nowstr;
+	  var reg = /[^;](\d+:\d+)::/gi;
+	  var arrMactches = data.match(reg)
+
+	   if (arrMactches.length != myarr.length) {
+		  alert('arrlength error,please refresh the page');
+		  return true;
+	  } else {
+		  for (var i = 0; i < arrMactches.length; i++) {
+			  data = data.replace(arrMactches[i], myarr[i] + '-');
+			  //alert(arrMactches[i]);   //Cat  cat
+		  }
+		  data = data.replace(/-/g, '::');
+	  }
+	  $('#skuProps').text(data);
 	
-		var arr = new Array();
+/*		var arr = new Array();
 		$('#sss table').each(function(index, element) {
 			$(this).find('input').each(function(index, element) {
 				arr.push($(this).val());
             });
         });
 		console.log(arr);
-		var nowstr = $('#skuProps').text();
+		//var str = $('#ssss').text();
 		
-		nowstr = ';' + nowstr;
-		console.log(nowstr);
+		for(a in arr){
+			//arr[a];
+			$('.rep_'+a).text(arr[a]);
+		}*/
 		
-		var nowarr = nowstr.split('::');
-		console.log(nowarr);
+		//var nowstr = $('#skuProps').text();
+		
+		//nowstr = ';' + nowstr;
+		//console.log(nowstr);
+		
+		//var nowarr = nowstr.split('::');
+		//console.log(nowarr);
 		
 		
 
@@ -101,18 +137,21 @@ $("input[name='s[]']").each(function(n,e){
 			//尺寸   sizevalue
 			var sv =  $(this).attr("value");
 			//价格	sizeprice
-			var sp = $(this).next().children('input').eq(0).attr("value");			
+			var sp = $(this).next().children('input').eq(0).attr("value");	
 			//数量	sizenum
 			var sn = $(this).next().children('input').eq(1).attr("value");
-			
+						
 			var zhong = '';
+			var num = 0
 			$("input[name='c[]']").each(function(n,e) {
 				var isChecked = $(this).attr("checked");
 				if (isChecked == true) {
+					temp = '<div class="rep_'+num+'">' + sp + '</div>'+':'+'<div class="rep_'+(num+1)+'">' + sn + '</div>';
 					//var cv = $(this).next().attr("value");
 					var cv = $(this).attr("value");	//颜色	colorvalue
 					//console.log(sp+':'+sn+'::'+DM_size+':'+sv+';'+DM_color+':'+cv+';');
-					zhong += sp+':'+sn+'::'+DM_size+':'+sv+';'+DM_color+':'+cv+';';			
+					zhong += temp+'::'+DM_size+':'+sv+';'+DM_color+':'+cv+';';	
+					num+=2;							
 				}
 
 			});
@@ -181,7 +220,7 @@ $("input[name='s[]']").each(function(n,e){
 
 </script>
 <style type="text/css">
-.hide{/*display:none; visibility:hidden;*/}
+.hide{display:none; visibility:hidden;}
 input[type="text"]{ width:300px; height:30px; line-height:30px;}
 p { font-size:12px; margin:0 auto;}
 h1 { text-align:center;}
@@ -192,10 +231,11 @@ h1 { text-align:center;}
 #pricetable span{ float:right;font-size:12px;_margin-top:-20px;}
 #pricetable span input{width:40px;}
 </style>
-
+<div class="hide">
 <p>红色  给用户填写 <input type="text"   value="#FF3366" /></p>
 <p>黄色  程序判断 <input type="text"  value="#FFFFCC" /></p>
 <p>蓝色  程序员要搞清楚<input type="text"   value="#33CCFF" /></p>
+</div>
 <h1>四件套参数测试 </h1>
 <form id="form1" name="form1" method="post" action="post2.php" target="_blank">
   <table width="1200" border="1" align="center">
