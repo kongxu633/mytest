@@ -22,12 +22,18 @@ $('#getSkuProps').click(function(){checkSKU()});
 function checkSKU(){	//利用数组替换
 	  var arr = new Array();
 	  $('#sss input').each(function(){
+			  if($(this).val()=='undefind' || $(this).val()==''){$(this).val(0);}
 			  arr.push($(this).val());
 	  });
 	  $('#ssss div[class^="rep_"]').each(function(index, element) {
 		  $(this).text(arr[index]);
 	  });
-	  $('#skuProps').text($('#ssss').text());//这里可能有text val的bug	  
+	  var str1 = $('#ssss').text();
+	  var str2 = $('#skuProps').text();
+	  if(str1!=str2){
+		  alert('replace new string to the container');
+	  }
+	  $('#skuProps').text(str1);//这里可能有text val的bug
 }
 
 function changeSKU(){	//利用正则替换
@@ -38,6 +44,7 @@ function changeSKU(){	//利用正则替换
 	  var arr = new Array();
 	  $('#sss table').each(function(index, element) {
 		  $(this).find('input').each(function(index, element) {
+			  if($(this).val()=='undefind' || $(this).val()==''){$(this).val('0');}
 			  arr.push($(this).val());
 		  });
 	  });
@@ -52,7 +59,7 @@ function changeSKU(){	//利用正则替换
 	  //console.log(myarr);
 
 	   if (arrMactches.length != myarr.length) {
-		  alert('arrlength error,please refresh the page');
+		  alert('arrlength error,please refresh the page or click getSkuProps button');
 		  return true;
 	  } else {
 		  for (var i = 0; i < arrMactches.length; i++) {
