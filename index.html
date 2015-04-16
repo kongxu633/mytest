@@ -19,7 +19,7 @@ $('#getSkuProps').click(function(){checkSKU()});
 
 //$.find("textarea").each(function() { $(this).text($(this).val()); });
 
-function checkSKU(){	//利用数组替换
+function checkSKU(){	//利用数组替换 取div中的数
 	  var arr = new Array();
 	  $('#sss input').each(function(){
 			  if($(this).val()=='undefind' || $(this).val()==''){$(this).val(0);}
@@ -36,7 +36,7 @@ function checkSKU(){	//利用数组替换
 	  $('#skuProps').text(str1);//这里可能有text val的bug
 }
 
-function changeSKU(){	//利用正则替换
+function changeSKU(){	//利用正则替换 取textarea中的数
 	  //var nowstr = '80:100::5569827:55481260;1627207:3232483;80:100::5569827:55481260;1627207:28340;80:100::5569827:55481260;1627207:107121;80:100::5569827:55481261;1627207:3232483;80:100::5569827:55481261;1627207:28340;80:100::5569827:55481261;1627207:107121;';
 	  //var myarr = new Array("80:89", "9:100", "80:36", "80:100", "12:100", "80:123");
 	  var nowstr = $('#skuProps').text();
@@ -69,55 +69,6 @@ function changeSKU(){	//利用正则替换
 		  data = data.replace(/-/g, '::');
 	  }
 	  $('#skuProps').text(data);
-	
-/*		var arr = new Array();
-		$('#sss table').each(function(index, element) {
-			$(this).find('input').each(function(index, element) {
-				arr.push($(this).val());
-            });
-        });
-		console.log(arr);
-		//var str = $('#ssss').text();
-		
-		for(a in arr){
-			//arr[a];
-			$('.rep_'+a).text(arr[a]);
-		}*/
-		
-		//var nowstr = $('#skuProps').text();
-		
-		//nowstr = ';' + nowstr;
-		//console.log(nowstr);
-		
-		//var nowarr = nowstr.split('::');
-		//console.log(nowarr);
-		
-		
-
-		/*
-		var mystring = "sharejs.com,google.com,baidu.com_weibo.com_haotu.net";
-		var myarray  = mystring.split(/[,_]/);
-		console.log(myarray);
-		*/
-		
-		
-//		var catestr = '';
-//		var aliasstr = '';
-//		$('#colortable td').find('input:odd').each(function(index, element) {
-//            //if($(this).attr('title')!=''){
-//					var title = $(this).attr('title');
-//					var value = $(this).attr('value');
-//					//console.log(title+'-'+value);
-//					if(title!=value){
-//						var cv = $(this).prev().attr('value');
-//						aliasstr += DM_color+':'+cv+':'+value+';';
-//						catestr += DM_color+':'+cv+';';
-//					}
-//			//}
-//        });
-//		//console.log(zhong);
-//		$('#propAlias').text(aliasstr);
-//		$('#cateProps').text(catestr);
 }
 
 function changeAlias(){
