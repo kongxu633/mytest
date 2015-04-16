@@ -11,18 +11,30 @@ $("document").ready(function() {
 userSKU();
 csvSKU()
 userAlias();
-$('#getSkuProps').click(function(){changeSKU()});
+//已经利用监听事件自动完成
+//$('#getSkuProps').click(function(){changeSKU()});
+$('#getSkuProps').click(function(){checkSKU()});
 });
 
 
 //$.find("textarea").each(function() { $(this).text($(this).val()); });
 
+function checkSKU(){	//利用数组替换
+	  var arr = new Array();
+	  $('#sss input').each(function(){
+			  arr.push($(this).val());
+	  });
+	  $('#ssss div[class^="rep_"]').each(function(index, element) {
+		  $(this).text(arr[index]);
+	  });
+	  $('#skuProps').text($('#ssss').text());//这里可能有text val的bug	  
+}
 
-function changeSKU(){
+function changeSKU(){	//利用正则替换
 	  //var nowstr = '80:100::5569827:55481260;1627207:3232483;80:100::5569827:55481260;1627207:28340;80:100::5569827:55481260;1627207:107121;80:100::5569827:55481261;1627207:3232483;80:100::5569827:55481261;1627207:28340;80:100::5569827:55481261;1627207:107121;';
 	  //var myarr = new Array("80:89", "9:100", "80:36", "80:100", "12:100", "80:123");
 	  var nowstr = $('#skuProps').text();
-	  console.log(nowstr);
+	  //console.log(nowstr);
 	  var arr = new Array();
 	  $('#sss table').each(function(index, element) {
 		  $(this).find('input').each(function(index, element) {
@@ -36,8 +48,8 @@ function changeSKU(){
 	  var data = nowstr;
 	  var reg = /(\d+:\d+)::/gi;
 	  var arrMactches = data.match(reg)
-	  console.log(arrMactches);
-	  console.log(myarr);
+	  //console.log(arrMactches);
+	  //console.log(myarr);
 
 	   if (arrMactches.length != myarr.length) {
 		  alert('arrlength error,please refresh the page');
@@ -157,7 +169,7 @@ $("input[name='s[]']").each(function(n,e){
 
 			});
 			putstr = qian + zhong + hou;
-			console.log(putstr);
+			//console.log(putstr);
 			$('#ssss').append(putstr);
 		}
 		else
@@ -207,7 +219,7 @@ $("input[name='s[]']").each(function(n,e){
 			});
 			zhong = '<tr><td rowspan="' + num + '">' + sv + '</td>' + zhong;
 			putstr = qian + zhong + hou;
-			console.log(putstr);
+			//console.log(putstr);
 			$('#sss').append(putstr);
 		}
 		else
@@ -222,7 +234,7 @@ $("input[name='s[]']").each(function(n,e){
 
 </script>
 <style type="text/css">
-.hide{display:none; visibility:hidden;}
+.h3de{display:none; visibility:hidden;}
 input[type="text"]{ width:300px; height:30px; line-height:30px;}
 p { font-size:12px; margin:0 auto;}
 h1 { text-align:center;}
