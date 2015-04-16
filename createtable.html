@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+
+</head>
+<body>
+<div id="myList"></div>
+123
+
+
+
+<script>
+
+var color=["绿色","蓝色","黄色"];
+    var pack=["套餐一","套餐二"];
+    var col=[{text:"价格",type:"text"},{text:"数量",type:"text"},{text:"编码",type:"text"},{text:"操作",type:"btn"}];
+    var table=document.createElement("table");
+    updateTable();
+    //document.body.appendChild(table);
+	document.getElementById("myList").appendChild(table);
+ 
+    //更新表格内容
+    function updateTable(){
+        var i,h,data,tbody;
+        table.innerHTML="";
+        tbody=table.createTBody();
+        createHead([{text:"颜色"},{text:"套餐"}].concat(col),table);
+        for(i=0;i<color.length;i++){
+            for(h=0;h<pack.length;h++){
+                data=[];
+                h===0&&data.push({text:color[i],rowSpan:pack.length});
+                data.push({text:pack[h]});
+                createRow(data.concat(col),i*pack.length+h,tbody);
+            }
+        }
+    }
+    function createHead(data,table){
+        var row,i,thead;
+        thead=table.createTHead();
+        row=thead.insertRow();
+        for(i=0;i<data.length;i++){
+            row.insertCell(i).innerHTML=data[i].text;
+        }
+    }
+    function createRow(data,index,tbody){
+        var row,text,i;
+        row=tbody.insertRow(index||0);
+        for(i=0;i<data.length;i++){
+            cell=row.insertCell(i);
+            data[i].rowSpan&&(cell.rowSpan=data[i].rowSpan);
+            switch(data[i].type){
+                case "text" :
+                    text=document.createElement("input");
+                    text.type="text";
+                    cell.appendChild(text);
+                    break;
+                case "btn":
+                    text=document.createElement("button");
+                    text.innerHTML=data[i].text;
+                    cell.appendChild(text);
+                    break;
+                default :
+                    cell.innerHTML=data[i].text;
+                    break;
+            }
+        }
+    }
+	
+</script>
+
+</body>
+
+</html>
+

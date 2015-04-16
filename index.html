@@ -19,10 +19,10 @@ $('#getSkuProps').click(function(){changeSKU()});
 
 
 function changeSKU(){
-
 	  //var nowstr = '80:100::5569827:55481260;1627207:3232483;80:100::5569827:55481260;1627207:28340;80:100::5569827:55481260;1627207:107121;80:100::5569827:55481261;1627207:3232483;80:100::5569827:55481261;1627207:28340;80:100::5569827:55481261;1627207:107121;';
 	  //var myarr = new Array("80:89", "9:100", "80:36", "80:100", "12:100", "80:123");
 	  var nowstr = $('#skuProps').text();
+	  console.log(nowstr);
 	  var arr = new Array();
 	  $('#sss table').each(function(index, element) {
 		  $(this).find('input').each(function(index, element) {
@@ -34,8 +34,10 @@ function changeSKU(){
 		  myarr.push(arr[i] + ':' + arr[i + 1] + '');
 	  }
 	  var data = nowstr;
-	  var reg = /[^;](\d+:\d+)::/gi;
+	  var reg = /(\d+:\d+)::/gi;
 	  var arrMactches = data.match(reg)
+	  console.log(arrMactches);
+	  console.log(myarr);
 
 	   if (arrMactches.length != myarr.length) {
 		  alert('arrlength error,please refresh the page');
@@ -212,6 +214,7 @@ $("input[name='s[]']").each(function(n,e){
 		{
 			$('#'+divid).remove();
 		}
+		$('.goods table').find('input').unbind().blur(function(){changeSKU();});
     });
 });	
 	
@@ -329,44 +332,41 @@ h1 { text-align:center;}
       <td>&nbsp;</td>
     </tr>-->
     
-    <tr>
+    <tr> <!--color and size start-->
       <td colspan="4">
-      
-<table width="1200" border="1" id="colortable">
-
-  <tr>
-        <td><input type="checkbox" id="c1" name="c[]" value="3232483"/><input title="军绿色" value="军绿色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c2" name="c[]" value="3232484"/><input title="天蓝色"  value="天蓝色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c3" name="c[]" value="3232481"/><input title="巧克力色"  value="巧克力色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c4" name="c[]" value="90554"/><input title="桔色"  value="桔色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c5" name="c[]" value="28332"/><input title="浅灰色"  value="浅灰色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c6" name="c[]" value="30156"/><input title="浅绿色"  value="浅绿色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c7" name="c[]" value="60092"/><input title="浅黄色"  value="浅黄色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c8" name="c[]" value="3232482"/><input title="深卡其布色"  value="深卡其布色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c9" name="c[]" value="3232478"/><input title="深灰色"  value="深灰色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c10" name="c[]" value="3232479"/><input title="深紫色"  value="深紫色" style="width:60px"/></td>
-  </tr>
-  <tr>          
-    	<td><input type="checkbox" id="c11" name="c[]" value="28340"/><input title="深蓝色"  value="深蓝色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c12" name="c[]" value="28320"/><input title="白色"  value="白色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c13" name="c[]" value="3232480"/><input title="粉红色"  value="粉红色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c14" name="c[]" value="80882"/><input title="紫罗兰色"  value="紫罗兰色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c15" name="c[]" value="28329"/><input title="紫色"  value="紫色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c16" name="c[]" value="28326"/><input title="红色"  value="红色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c17" name="c[]" value="28335"/><input title="绿色"  value="绿色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c18" name="c[]" value="130164"/><input title="花色"  value="花色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c19" name="c[]" value="28338"/><input title="蓝色"  value="蓝色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c20" name="c[]" value="132069"/><input title="褐色"  value="褐色" style="width:60px"/></td>
-  </tr>
-  <tr>  
-        <td><input type="checkbox" id="c21" name="c[]" value="107121"/><input title="透明色"  value="透明色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c22" name="c[]" value="28327"/><input title="酒红色"  value="酒红色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c23" name="c[]" value="28324"/><input title="黄色"  value="黄色" style="width:60px"/></td>
-        <td><input type="checkbox" id="c24" name="c[]" value="28341"/><input title="黑色"  value="黑色" style="width:60px"/></td>   
-        <!--<td colspan="6">*注: 颜色必须尺寸之前选择 并且选择完不能改变</td>-->                                        
-  </tr>
-</table>  
- 
+        <table width="1200" border="1" id="colortable">
+          <tr>
+                <td><input type="checkbox" id="c1" name="c[]" value="3232483"/><input title="军绿色" value="军绿色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c2" name="c[]" value="3232484"/><input title="天蓝色"  value="天蓝色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c3" name="c[]" value="3232481"/><input title="巧克力色"  value="巧克力色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c4" name="c[]" value="90554"/><input title="桔色"  value="桔色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c5" name="c[]" value="28332"/><input title="浅灰色"  value="浅灰色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c6" name="c[]" value="30156"/><input title="浅绿色"  value="浅绿色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c7" name="c[]" value="60092"/><input title="浅黄色"  value="浅黄色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c8" name="c[]" value="3232482"/><input title="深卡其布色"  value="深卡其布色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c9" name="c[]" value="3232478"/><input title="深灰色"  value="深灰色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c10" name="c[]" value="3232479"/><input title="深紫色"  value="深紫色" style="width:60px"/></td>
+          </tr>
+          <tr>          
+                <td><input type="checkbox" id="c11" name="c[]" value="28340"/><input title="深蓝色"  value="深蓝色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c12" name="c[]" value="28320"/><input title="白色"  value="白色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c13" name="c[]" value="3232480"/><input title="粉红色"  value="粉红色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c14" name="c[]" value="80882"/><input title="紫罗兰色"  value="紫罗兰色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c15" name="c[]" value="28329"/><input title="紫色"  value="紫色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c16" name="c[]" value="28326"/><input title="红色"  value="红色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c17" name="c[]" value="28335"/><input title="绿色"  value="绿色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c18" name="c[]" value="130164"/><input title="花色"  value="花色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c19" name="c[]" value="28338"/><input title="蓝色"  value="蓝色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c20" name="c[]" value="132069"/><input title="褐色"  value="褐色" style="width:60px"/></td>
+          </tr>
+          <tr>  
+                <td><input type="checkbox" id="c21" name="c[]" value="107121"/><input title="透明色"  value="透明色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c22" name="c[]" value="28327"/><input title="酒红色"  value="酒红色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c23" name="c[]" value="28324"/><input title="黄色"  value="黄色" style="width:60px"/></td>
+                <td><input type="checkbox" id="c24" name="c[]" value="28341"/><input title="黑色"  value="黑色" style="width:60px"/></td>   
+                <!--<td colspan="6">*注: 颜色必须尺寸之前选择 并且选择完不能改变</td>-->                                        
+          </tr>
+        </table>  
       </td>
     </tr>
     <tr>
@@ -399,11 +399,11 @@ h1 { text-align:center;}
     <tr>
       <td colspan="4">
       	<!--下面放的是整理好的参数-->
-        <textarea id="skuProps" name="skuProps" cols="150" rows="10" readonly="readonly"></textarea>
+        <textarea id="skuProps" name="skuProps" cols="150" rows="10" readonly></textarea>
         <input id="getSkuProps" name="getSkuProps" type="button" value="getSkuProps" />
-        <textarea id="propAlias" name="propAlias" cols="150" rows="10" readonly="readonly"></textarea>
+        <textarea id="propAlias" name="propAlias" cols="150" rows="10" readonly></textarea>
         <input id="getPropAlias" name="getPropAlias" type="button" value="getPropAlias" />
-        <textarea id="cateProps" name="cateProps" cols="150" rows="10" readonly="readonly"></textarea>
+        <textarea id="cateProps" name="cateProps" cols="150" rows="10" readonly></textarea>
         <input id="cateProps" name="cateProps" type="button" value="cateProps" />        
       </td>
     </tr>
