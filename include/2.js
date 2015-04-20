@@ -1,7 +1,20 @@
+$(document).ready(function(e) {
+	//初始化数值
+    defChecked();
+	
+	//defHidden();
+	specialHidden();
+	//选择后自动写入
+	select2input();
+	//为空时判断
+	input2select();
+	
+	//hookSubmit();
+});	
+
 function defChecked(){
 		//品牌
 		$('#prop_20000 option:last').attr('selected','selected');
-		$('#simulate-prop_20000').val('其他');
 		$('#prop_20000').removeAttr("style");
 		//货号
 		$('#prop_13021751 option:last').attr('selected','selected');
@@ -11,7 +24,7 @@ function defChecked(){
 		//设置Select的Text值为jQuery的项选中 $("#select_id option[text='jQuery']").attr("selected", true);
 		//件数
 		$('#prop_31745 option:eq(1)').attr('selected','selected');
-		$('#simulate-prop_31745').val('4件');
+		$('#simulate-prop_31745').val($('#prop_31745').find("option:selected").text().trim());
 		$('#prop_31745').removeAttr("style");
 		
 		//被面材质
@@ -23,7 +36,10 @@ function defChecked(){
 		//款式
 		$('#prop_122276315').removeAttr("style");
 		//产品等级
+		$('#prop_6200039 option:eq(1)').attr('selected','selected');
+		$('#simulate-prop_6200039').val($('#prop_6200039').find("option:selected").text().trim());
 		$('#prop_6200039').removeAttr("style");
+		
 		//风格
 		$('#prop_20608').removeAttr("style");
 		//面料支数
@@ -33,7 +49,7 @@ function defChecked(){
 		//商品条形码
 		//印花工艺
 		$('#prop_27514393 option:eq(1)').attr('selected','selected');
-		$('#simulate-prop_27514393').val('活性印花');
+		$('#simulate-prop_27514393').val($('#prop_27514393').find("option:selected").text().trim());
 		$('#prop_27514393').removeAttr("style");
 		//织造工艺
 		$('#prop_27530250').removeAttr("style");		
@@ -41,39 +57,17 @@ function defChecked(){
 }
 
 function defHidden(){
-		//件数
-		$('#simulate-prop_31745').css({'display':'none', 'visibility':'hidden'});
-		//被面材质
-		$('#simulate-prop_147784191').css({'display':'none', 'visibility':'hidden'});
-		//被里材质
-		$('#simulate-prop_20021').css({'display':'none', 'visibility':'hidden'});
-		//图案
-		$('#simulate-prop_20603').css({'display':'none', 'visibility':'hidden'});
-		//款式
-		$('#simulate-prop_122276315').css({'display':'none', 'visibility':'hidden'});
-		//产品等级
-		$('#simulate-prop_6200039').css({'display':'none', 'visibility':'hidden'});
-		//风格
-		$('#simulate-prop_20608').css({'display':'none', 'visibility':'hidden'});
-		//商品条形码
-		//印花工艺
-		$('#simulate-prop_27514393').css({'display':'none', 'visibility':'hidden'});
-		//织造工艺
-		$('#simulate-prop_27530250').css({'display':'none', 'visibility':'hidden'});	
+		$('[id^=simulate-prop_]').each(function(index, element) {
+            console.log($(this).attr('id')+'  ---  '+$(this).val());
+			$(this).css({'display':'none', 'visibility':'hidden'});
+        });
 }
-	
-$(document).ready(function(e) {
-	//初始化数值
-    defChecked();
-	
-	defHidden();
-	//选择后自动写入
-	select2input();
-	//为空时判断
-	input2select();
-	
-	//hookSubmit();
-});	
+
+function specialHidden(){
+			//商品条形码
+			$('#spu_2814443').css({'display':'none', 'visibility':'hidden'});
+			$('#ariaby-prop_13021751').parent().css({'display':'none', 'visibility':'hidden'});
+}
 
 
 function hookSubmit(){
