@@ -41,7 +41,25 @@ function defChecked(){
 }
 
 function defHidden(){
-	
+		//件数
+		$('#simulate-prop_31745').css({'display':'none', 'visibility':'hidden'});
+		//被面材质
+		$('#simulate-prop_147784191').css({'display':'none', 'visibility':'hidden'});
+		//被里材质
+		$('#simulate-prop_20021').css({'display':'none', 'visibility':'hidden'});
+		//图案
+		$('#simulate-prop_20603').css({'display':'none', 'visibility':'hidden'});
+		//款式
+		$('#simulate-prop_122276315').css({'display':'none', 'visibility':'hidden'});
+		//产品等级
+		$('#simulate-prop_6200039').css({'display':'none', 'visibility':'hidden'});
+		//风格
+		$('#simulate-prop_20608').css({'display':'none', 'visibility':'hidden'});
+		//商品条形码
+		//印花工艺
+		$('#simulate-prop_27514393').css({'display':'none', 'visibility':'hidden'});
+		//织造工艺
+		$('#simulate-prop_27530250').css({'display':'none', 'visibility':'hidden'});	
 }
 	
 $(document).ready(function(e) {
