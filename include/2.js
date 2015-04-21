@@ -12,7 +12,8 @@ $(document).ready(function(e) {
 	//hookSubmit();
 	//按生成按钮
 	getcateProps();
-	
+	getinputPids();
+	getinputValues();
 	submitForm();
 
 });	
@@ -126,6 +127,52 @@ function input2select(){
 }
 
 function getcateProps(){
+		$('#getCateProps').click(function(){
+			$("#cateProps").empty();
+			/*
+			//这种方式会有很多空格 但是通用
+			$('[name^=cp_]').each(function(index, element) {
+				$("#cateProps").append($(this).val()+';');
+			});
+			*/
+			x=$('select,:checkbox').serializeArray();
+			$.each(x, function(i, field){
+				if(field.value != ''){
+					$("#cateProps").append(field.value + ';');
+				}
+			});
+			/*
+			//以下为测试时使用
+			$("#inputPids").empty();
+			$("#inputValues").append($('#J_MainForm').serialize());
+			x=$('select,:checkbox').serializeArray();
+			$.each(x, function(i, field){
+				if(field.value != ''){
+					$("#inputPids").append(field.value + ';');
+				}
+			});
+			*/
+		});
+}
+
+function getinputPids(){
+		$('#getInputPids').click(function(){
+			$("#inputPids").empty();
+			$("#inputValues").empty();
+			//这种方式会有很多空格 但是通用
+			$('input[name^=cpi_]').each(function(index, element) {
+				value = $(this).val();
+				name = $(this).attr('name');
+				pid = name.replace('cpi_','');
+				if($(this).val() != ''){
+					$("#inputPids").append(pid+',');
+					$("#inputValues").append(value+',');
+				}
+			});
+
+		});
+}
+function getinputValues(){
 		$('#getCateProps').click(function(){
 			$("#cateProps").empty();
 			/*
