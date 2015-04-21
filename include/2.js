@@ -10,20 +10,11 @@ $(document).ready(function(e) {
 	input2select();
 	
 	//hookSubmit();
-	$('#getCateProps').click(function(){
-		$("#cateProps").empty();
-		$("#inputPids").empty();
-		$('[name^=cp_]').each(function(index, element) {
-            $("#cateProps").append($(this).val()+';');
-        });
-		$("#inputValues").append($('#J_MainForm').serialize());
-		x=$('#J_MainForm').serializeArray();
-		$.each(x, function(i, field){
-			if(field.value != ''){
-				$("#inputPids").append(field.value + ';');
-			}
-		});
-	});
+	//按生成按钮
+	getcateProps();
+	
+	submitForm();
+
 });	
 
 function defChecked(){
@@ -101,7 +92,8 @@ function select2input(){
 			//获取select选中的索引: $("#ddlregtype ").get(0).selectedindex;
 			inputid = '#simulate-' + $(this).attr('id');
 			$(inputid).val( $.trim($(this).find("option:selected:not(.J_other)").text()) );
-			$(inputid).val() == '' ? $(inputid).css({'display':'', 'visibility':''}).show().focus() : $(inputid).css({'display':'none', 'visibility':'hidden'}) ;			
+			$(inputid).val() == '' ? $(inputid).css({'display':'block', 'visibility':'visible'}).show().focus() : $(inputid).css({'display':'none', 'visibility':'hidden'}) ;
+						
 			/*
 			inputtext = $(this).find("option:selected").hasClass('J_other') ? '' : $.trim($(this).find("option:selected").text());
 			inputtext == '' ? $(inputid).attr('visibility','show').show().focus() : $(inputid).val( inputtext );
@@ -132,3 +124,58 @@ function input2select(){
 		});
 		
 }
+
+function getcateProps(){
+		$('#getCateProps').click(function(){
+			$("#cateProps").empty();
+			/*
+			//这种方式会有很多空格 但是通用
+			$('[name^=cp_]').each(function(index, element) {
+				$("#cateProps").append($(this).val()+';');
+			});
+			*/
+			x=$('select,:checkbox').serializeArray();
+			$.each(x, function(i, field){
+				if(field.value != ''){
+					$("#cateProps").append(field.value + ';');
+				}
+			});
+			/*
+			//以下为测试时使用
+			$("#inputPids").empty();
+			$("#inputValues").append($('#J_MainForm').serialize());
+			x=$('select,:checkbox').serializeArray();
+			$.each(x, function(i, field){
+				if(field.value != ''){
+					$("#inputPids").append(field.value + ';');
+				}
+			});
+			*/
+		});
+}
+
+(function($){
+	$.fn.serializeJson=function(){
+		var serializeObj={};
+		var array=this.serializeArray();
+		var str=this.serialize();
+		$(array).each(function(){
+			if(serializeObj[this.name]){
+				if($.isArray(serializeObj[this.name])){
+					serializeObj[this.name].push(this.value);
+				}else{
+					serializeObj[this.name]=[serializeObj[this.name],this.value];
+				}
+			}else{
+				serializeObj[this.name]=this.value;	
+			}
+		});
+		return serializeObj;
+	};
+})(jQuery);
+
+function submitForm(){
+	console.log($("#J_MainForm").serializeJson());
+	$("#jsonValues").append(JSON.stringify($("#J_MainForm").serializeJson()));
+}
+
