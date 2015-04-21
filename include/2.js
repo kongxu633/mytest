@@ -38,7 +38,7 @@ function defChecked(){
 		//设置Select的Text值为jQuery的项选中 $("#select_id option[text='jQuery']").attr("selected", true);
 		//件数
 		$('#prop_31745 option:eq(1)').attr('selected','selected');
-		$('#simulate-prop_31745').val($('#prop_31745').find("option:selected").text().trim());
+		$('#simulate-prop_31745').val($.trim($('#prop_31745').find("option:selected").text()));
 		$('#prop_31745').removeAttr("style");
 		
 		//被面材质
@@ -51,7 +51,7 @@ function defChecked(){
 		$('#prop_122276315').removeAttr("style");
 		//产品等级
 		$('#prop_6200039 option:eq(1)').attr('selected','selected');
-		$('#simulate-prop_6200039').val($('#prop_6200039').find("option:selected").text().trim());
+		$('#simulate-prop_6200039').val($.trim($('#prop_6200039').find("option:selected").text()));
 		$('#prop_6200039').removeAttr("style");
 		
 		//风格
@@ -63,7 +63,7 @@ function defChecked(){
 		//商品条形码
 		//印花工艺
 		$('#prop_27514393 option:eq(1)').attr('selected','selected');
-		$('#simulate-prop_27514393').val($('#prop_27514393').find("option:selected").text().trim());
+		$('#simulate-prop_27514393').val($.trim($('#prop_27514393').find("option:selected").text()));
 		$('#prop_27514393').removeAttr("style");
 		//织造工艺
 		$('#prop_27530250').removeAttr("style");		
@@ -71,7 +71,7 @@ function defChecked(){
 }
 
 function defHidden(){
-		$('[id^=simulate-prop_]').each(function(index, element) {
+		$('input[id^=simulate-prop_]:not(:first)').each(function(index, element) {
             //console.log($(this).attr('id')+'  ---  '+$(this).val());
 			$(this).css({'display':'none', 'visibility':'hidden'});
         });
@@ -100,14 +100,14 @@ function select2input(){
 			//获取select选中的 value: $("#ddlregtype ").val(); 
 			//获取select选中的索引: $("#ddlregtype ").get(0).selectedindex;
 			inputid = '#simulate-' + $(this).attr('id');
-			$(inputid).val( $(this).find("option:selected:not(.J_other)").text().trim() );
+			$(inputid).val( $.trim($(this).find("option:selected:not(.J_other)").text()) );
 			$(inputid).val() == '' ? $(inputid).css({'display':'', 'visibility':''}).show().focus() : $(inputid).css({'display':'none', 'visibility':'hidden'}) ;			
 			/*
-			inputtext = $(this).find("option:selected").hasClass('J_other') ? '' : $(this).find("option:selected").text().trim();
+			inputtext = $(this).find("option:selected").hasClass('J_other') ? '' : $.trim($(this).find("option:selected").text());
 			inputtext == '' ? $(inputid).attr('visibility','show').show().focus() : $(inputid).val( inputtext );
 			*/
 			/*
-			$(inputid).val( $(this).find("option:selected:not(.J_other)").text().trim() );
+			$(inputid).val( $.trim($(this).find("option:selected:not(.J_other)").text()) );
 			$(inputid).val() == '' ? $(inputid).css({'display':'', 'visibility':''}).show().focus() : $(inputid).css({'display':'none', 'visibility':'hidden'}) ;
 			*/
 			//选中棉的二级分类
