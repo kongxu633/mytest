@@ -4,6 +4,10 @@ $(document).ready(function(e) {
 	
 	defHidden();
 	specialHidden();
+	
+	//显示select
+	showSelect();
+	
 	//选择后自动写入
 	select2input();
 	//为空时判断
@@ -18,47 +22,33 @@ $(document).ready(function(e) {
 
 });	
 
+function showSelect(){
+		$('select[id^=prop_]').removeAttr("style");	
+}
+
 function defChecked(){
 		//品牌
 		$('#prop_20000 option:last').attr('selected','selected');
-		$('#prop_20000').removeAttr("style");
+
 		//货号
 		$('#prop_13021751 option:last').attr('selected','selected');
-		$('#prop_13021751').removeAttr("style");
+
 		//设置Select索引值为1的项选中 $("#select_id ").get(0).selectedIndex=1;  
 		//设置Select的Value值为4的项选中 $("#select_id ").val(4);   
 		//设置Select的Text值为jQuery的项选中 $("#select_id option[text='jQuery']").attr("selected", true);
 		//件数
 		$('#prop_31745 option:eq(1)').attr('selected','selected');
 		$('#simulate-prop_31745').val($.trim($('#prop_31745').find("option:selected").text()));
-		$('#prop_31745').removeAttr("style");
-		
-		//被面材质
-		$('#prop_147784191').removeAttr("style");
-		//被里材质
-		$('#prop_20021').removeAttr("style");
-		//图案
-		$('#prop_20603').removeAttr("style");
-		//款式
-		$('#prop_122276315').removeAttr("style");
+
 		//产品等级
 		$('#prop_6200039 option:eq(1)').attr('selected','selected');
 		$('#simulate-prop_6200039').val($.trim($('#prop_6200039').find("option:selected").text()));
-		$('#prop_6200039').removeAttr("style");
-		
-		//风格
-		$('#prop_20608').removeAttr("style");
-		//面料支数
-		$('#prop_9698958').removeAttr("style");
-		//面料密度
-		$('#prop_9938993').removeAttr("style");
+
 		//商品条形码
 		//印花工艺
 		$('#prop_27514393 option:eq(1)').attr('selected','selected');
 		$('#simulate-prop_27514393').val($.trim($('#prop_27514393').find("option:selected").text()));
-		$('#prop_27514393').removeAttr("style");
-		//织造工艺
-		$('#prop_27530250').removeAttr("style");		
+		
 		
 }
 
