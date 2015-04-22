@@ -13,7 +13,7 @@ $(document).ready(function(e) {
 	//按生成按钮
 	getcateProps();
 	getinputPids();
-	getinputValues();
+
 	submitForm();
 
 });	
@@ -164,41 +164,22 @@ function getinputPids(){
 				value = $(this).val();
 				name = $(this).attr('name');
 				pid = name.replace('cpi_','');
-				if($(this).val() != ''){
+				// 选中其他 
+				defvalue = pid + ':-1';
+				svalue = $('#prop_'+pid).val();
+				if(svalue == defvalue && value != ''){
 					$("#inputPids").append(pid+',');
 					$("#inputValues").append(value+',');
 				}
 			});
-
 		});
-}
-function getinputValues(){
-		$('#getCateProps').click(function(){
-			$("#cateProps").empty();
-			/*
-			//这种方式会有很多空格 但是通用
-			$('[name^=cp_]').each(function(index, element) {
-				$("#cateProps").append($(this).val()+';');
-			});
-			*/
-			x=$('select,:checkbox').serializeArray();
-			$.each(x, function(i, field){
-				if(field.value != ''){
-					$("#cateProps").append(field.value + ';');
-				}
-			});
-			/*
-			//以下为测试时使用
-			$("#inputPids").empty();
-			$("#inputValues").append($('#J_MainForm').serialize());
-			x=$('select,:checkbox').serializeArray();
-			$.each(x, function(i, field){
-				if(field.value != ''){
-					$("#inputPids").append(field.value + ';');
-				}
-			});
-			*/
-		});
+		
+		$('input[name^=cpi_]').blur(function (){
+			//$(this).val() == '';	
+			
+			
+		});	
+		
 }
 
 (function($){
