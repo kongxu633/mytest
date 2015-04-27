@@ -257,8 +257,14 @@ border: 1px solid #C1DAD7;
 
 <script>
 
-	var color=["1.0m","1.8m","2.0m"];
-    var pack=["红色","蓝色"];
+	var size=["1.0m","1.8m","2.0m"];
+    var color=["红色","蓝色"];
+	var size_name = size;
+	var size_rename = '';
+	var size_vid = '';
+	var color_name = color;
+	var color_rename= '';
+	var color_vid= '';
 	var val=[{text:"尺寸别名",type:"val"},{text:"颜色别名",type:"val"},{text:"尺寸代码",type:"val"},{text:"颜色代码",type:"val"}];
     var col=[{text:"价格",type:"text"},{text:"数量",type:"text"}];
 	
@@ -272,12 +278,12 @@ border: 1px solid #C1DAD7;
         table.innerHTML="";
         tbody=table.createTBody();
         createHead([{text:"尺寸"},{text:"颜色"}].concat(val).concat(col),table);
-        for(i=0;i<color.length;i++){
-            for(h=0;h<pack.length;h++){
+        for(i=0;i<size.length;i++){
+            for(h=0;h<color.length;h++){
                 data=[];
-                h===0&&data.push({text:color[i],rowSpan:pack.length});
-                data.push({text:pack[h]});
-                createRow(data.concat(val).concat(col),i*pack.length+h,tbody);
+                h===0&&data.push({text:size[i],rowSpan:color.length});
+                data.push({text:color[h]});
+                createRow(data.concat(val).concat(col),i*color.length+h,tbody);
 				//console.log(data);
             }
         }
