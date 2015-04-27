@@ -259,7 +259,7 @@ border: 1px solid #C1DAD7;
 
 	var color=["1.0m","1.8m","2.0m"];
     var pack=["红色","蓝色"];
-	var val=[{text:"尺寸别名",type:"val"},{text:"尺寸代码",type:"val"},{text:"颜色别名",type:"val"},{text:"颜色代码",type:"val"}];
+	var val=[{text:"尺寸别名",type:"val"},{text:"颜色别名",type:"val"},{text:"尺寸代码",type:"val"},{text:"颜色代码",type:"val"}];
     var col=[{text:"价格",type:"text"},{text:"数量",type:"text"}];
 	
     var table=document.createElement("table");
@@ -304,6 +304,8 @@ border: 1px solid #C1DAD7;
                     break;
                 case "val":
                     text=document.createElement("input");
+					text.type="text";
+					text.readOnly=true;
                     text.value='';//data[i].text;
                     cell.appendChild(text);
                     break;
