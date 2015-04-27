@@ -259,12 +259,13 @@ border: 1px solid #C1DAD7;
 
 	var size=["1.0m","1.8m","2.0m"];
     var color=["红色","蓝色"];
-	var size_name = size;
-	var size_rename = '';
-	var size_vid = '';
-	var color_name = color;
-	var color_rename= '';
-	var color_vid= '';
+	//var size_name = size;
+	var size_rename = ["小号","中号","大号"];
+	var size_vid = ["5569827:55481260","5569827:55481261","5569827:55481262"];
+	//var color_name = color;
+	var color_rename= ["富贵吉祥","航海日记"];
+	var color_vid= ["1627207:3232483","1627207:3232484"];
+	
 	var val=[{text:"尺寸别名",type:"val"},{text:"颜色别名",type:"val"},{text:"尺寸代码",type:"val"},{text:"颜色代码",type:"val"}];
     var col=[{text:"价格",type:"text"},{text:"数量",type:"text"}];
 	
@@ -283,8 +284,13 @@ border: 1px solid #C1DAD7;
                 data=[];
                 h===0&&data.push({text:size[i],rowSpan:color.length});
                 data.push({text:color[h]});
-                createRow(data.concat(val).concat(col),i*color.length+h,tbody);
-				//console.log(data);
+				data.push({text:size_rename[i],type:"val"});
+				data.push({text:color_rename[h],type:"val"});
+				data.push({text:size_vid[i],type:"val"});
+				data.push({text:color_vid[h],type:"val"});
+                createRow(data.concat(col),i*color.length+h,tbody);
+				console.log(data);
+				console.log('\r\n');
             }
         }
     }
@@ -312,7 +318,7 @@ border: 1px solid #C1DAD7;
                     text=document.createElement("input");
 					text.type="text";
 					text.readOnly=true;
-                    text.value='';//data[i].text;
+                    text.value=data[i].text;
                     cell.appendChild(text);
                     break;
                 default :
