@@ -11,6 +11,7 @@ $("document").ready(function() {
 userSKU();
 csvSKU()
 userAlias();
+sizeAlias();
 //已经利用监听事件自动完成
 //$('#getSkuProps').click(function(){changeSKU()});
 $('#getSkuProps').click(function(){checkSKU()});
@@ -190,6 +191,53 @@ $("input[name='s[]']").each(function(n,e){
 	
 }
 
+
+function sizeAlias(){
+/*		var catestr = '';
+		var aliasstr = '';
+		$('#colortable td').find('input:odd').each(function(index, element) {
+            //if($(this).attr('title')!=''){
+					var title = $(this).attr('title');
+					var value = $(this).attr('value');
+					//console.log(title+'-'+value);
+					if(title!=value){
+						var cv = $(this).prev().attr('value');
+						aliasstr += DM_color+':'+cv+':'+value+';';
+						catestr += DM_color+':'+cv+';';
+					}
+			//}
+        });
+		//console.log(zhong);
+		$('#propAlias').text(aliasstr);
+		$('#cateProps').text(catestr);	*/
+	
+$("input[name='s[]']").each(function(n,e){
+    $(this).click(function() {	//点击尺寸
+	//console.log(DM_color_name);
+        var isChecked = $(this).attr("checked");
+		var divid = 'colorarr_' + n;
+		if (isChecked == true) {	//增加的时候 读取 数量价格 颜色
+			var qian = "<div id='"+divid+"'>";
+			var hou = "</div>";			
+			//尺寸   sizevalue
+			var sv =  $(this).attr("value");
+			var st =  $(this).attr("title");
+			zhong =DM_size+':'+sv+':'+st+';';
+
+			putstr = qian + zhong + hou;
+			//console.log(putstr);
+			$('#sssss').append(putstr);
+		}
+		else
+		{
+			$('#'+divid).remove();			
+		}
+	//console.log($('#ssss').text());
+	$('#colorAlias').text($('#sssss').text());//这里可能有text val的bug
+    });
+});	
+	
+}
 </script>
 <style type="text/css">
 .hide{display:none; visibility:hidden;}
@@ -343,18 +391,18 @@ h1 { text-align:center;}
       <td colspan="4">
         <table width="1200" border="1" id="pricetable">
           <tr>
-            <td><input type="checkbox" id="s1" name="s[]" value="55481260"/>1.0m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s2" name="s[]" value="55481261"/>1.2m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s3" name="s[]" value="55481262"/>1.35m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s4" name="s[]" value="55481263"/>1.5m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s5" name="s[]" value="55481264"/>1.8m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s1" name="s[]" value="55481260" title="1.0m"/>1.0m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s2" name="s[]" value="55481261" title="1.2m"/>1.2m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s3" name="s[]" value="55481262" title="1.35m"/>1.35m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s4" name="s[]" value="55481263" title="1.5m"/>1.5m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s5" name="s[]" value="55481264" title="1.8m"/>1.8m<span>价格<input value="80"/>数量<input value="100"/></span></td>
       	  </tr> 
       	  <tr>
-            <td><input type="checkbox" id="s6" name="s[]" value="55481265"/>2.0m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s7" name="s[]" value="89027723"/>2.2m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s8" name="s[]" value="89027775"/>2.5m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s9" name="s[]" value="89027830"/>2.8m<span>价格<input value="80"/>数量<input value="100"/></span></td>
-            <td><input type="checkbox" id="s10" name="s[]" value="10122"/>其他<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s6" name="s[]" value="55481265" title="2.0m"/>2.0m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s7" name="s[]" value="89027723" title="2.2m"/>2.2m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s8" name="s[]" value="89027775" title="2.5m"/>2.5m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s9" name="s[]" value="89027830" title="2.8m"/>2.8m<span>价格<input value="80"/>数量<input value="100"/></span></td>
+            <td><input type="checkbox" id="s10" name="s[]" value="10122" title="其他"/>其他<span>价格<input value="80"/>数量<input value="100"/></span></td>
       	  </tr> 
         </table>
       </td>
@@ -363,7 +411,8 @@ h1 { text-align:center;}
       <td colspan="4">
       	<!--下面放的是整理好的参数-->
         <div id="sss" class="goods"></div>
-        <div id="ssss" class="goods hide"></div>     
+        <div id="ssss" class="goods hide"></div>
+        <div id="sssss" class="goods hide"></div>     
       </td>
     </tr>
     <tr>
@@ -375,7 +424,7 @@ h1 { text-align:center;}
         <input id="getPropAlias" name="getPropAlias" type="button" value="getPropAlias" />
         <textarea id="cateProps" name="cateProps" cols="150" rows="10" readonly></textarea>
         <input id="cateProps" name="cateProps" type="button" value="cateProps" />  
-        <textarea id="colorAlias" name="colorAlias" cols="150" rows="10" readonly></textarea>           
+        <textarea id="colorAlias" name="colorAlias" cols="150" rows="10" readonly></textarea>                     
       </td>
     </tr>
     <tr>
